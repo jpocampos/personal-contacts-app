@@ -1,0 +1,31 @@
+<nav>
+  <div class="nav-brand"><a href="/">Agenda de Contatos</a><span>.</span></div>
+
+  <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/login" class="nav-cta">Login/Register →</a></li>
+  </ul>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('navHamburger');
+  const navLinks = document.getElementById('navLinks');
+
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('nav-open');
+    hamburger.classList.toggle('nav-hamburger--active');
+  });
+
+  // Fecha o menu ao clicar em um link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('nav-open');
+      hamburger.classList.remove('nav-hamburger--active');
+    });
+  });
+</script>

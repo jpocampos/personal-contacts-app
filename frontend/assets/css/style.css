@@ -1,0 +1,222 @@
+:root {
+--cream: #F5F0E8;
+--dark: #1A1A2E;
+--accent: #C8956C;
+--accent2: #7B9E87;
+--text: #2D2D2D;
+--muted: #888;
+}
+
+
+body {
+font-family: 'DM Sans', sans-serif;
+background: var(--cream);
+color: var(--text);
+/* overflow-x: hidden; */
+padding-top: 10vh;
+}
+
+/* CONTAINER */
+
+.container{
+  margin: 2rem auto;
+  padding: 0 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centraliza tudo junto */
+  background-color: var(--cream);
+}
+
+.table-container {
+  max-width: 900px;
+  overflow-x: auto;
+  padding: 20px;
+}
+
+.container h1 {
+  align-self: center; /* cola o título à esquerda da tabela */
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table th,
+table td {
+  padding: 0.5rem 1.5rem 0.5rem 0;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+/* BOTÃO LOGIN */
+.btn-login{
+    margin-top: 10px;
+}
+
+/* LINK */
+a {
+    text-decoration: none; /* Remove o sublinhado */
+    color: inherit;        /* Define a cor igual ao texto ao redor */
+}
+
+/* Opcional: remover o sublinhado no hover (passar o mouse) */
+a:hover {
+    text-decoration: none;
+}
+
+/*  NAVBAR  */
+nav {
+position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+display: flex; align-items: center; justify-content: space-between;
+padding: 1.2rem 4rem;
+background: rgba(245,240,232,0.85);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(200,149,108,0.2);
+transition: all 0.3s ease;
+}
+
+.nav-brand {
+font-family: 'Playfair Display', serif;
+font-size: 1.4rem;
+font-weight: 900;
+letter-spacing: -0.5px;
+color: var(--dark);
+}
+
+.nav-brand span { color: var(--accent); }
+
+.nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+
+.nav-links a {
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: 500;
+color: var(--text);
+letter-spacing: 0.5px;
+position: relative;
+transition: color 0.3s;
+}
+
+.nav-links a::after {
+content: '';
+position: absolute; bottom: -4px; left: 0;
+width: 0; height: 1.5px;
+background: var(--accent);
+transition: width 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--accent); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-links .disabled {
+color: var(--muted);
+pointer-events: none;
+font-size: 0.85rem;
+}
+
+.nav-cta {
+background: var(--dark);
+color: var(--cream) !important;
+padding: 0.6rem 1.4rem;
+border-radius: 100px;
+transition: background 0.3s, transform 0.2s !important;
+}
+
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--accent) !important; transform: translateY(-1px); }
+
+/* HAMBURGUER */
+.nav-hamburger {
+display: none;
+flex-direction: column;
+justify-content: center;
+gap: 5px;
+background: none;
+border: none;
+cursor: pointer;
+padding: 4px;
+z-index: 110;
+}
+
+.nav-hamburger span {
+display: block;
+width: 24px;
+height: 2px;
+background: var(--dark);
+border-radius: 2px;
+transition: transform 0.3s ease, opacity 0.3s ease;
+transform-origin: center;
+}
+
+/* Animação X ao abrir */
+.nav-hamburger--active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger--active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger--active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+
+  /* TABLE  */
+
+  .table-container {
+    max-width: 400px;
+    overflow-x: auto;
+    margin: 0 auto;   /* centraliza */
+  } 
+
+  /* NAV  */
+  nav {
+    padding: 1rem 1.5rem;
+  }
+
+  .nav-hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--cream);
+    padding: 5rem 2rem 2rem;
+    border-bottom: 1px solid rgba(200,149,108,0.2);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    z-index: 105;
+  }
+
+  .nav-links.nav-open {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+    border-bottom: 1px solid rgba(200,149,108,0.12);
+  }
+
+  .nav-links li:last-child {
+    border-bottom: none;
+    padding-top: 1rem;
+  }
+
+  .nav-links a,
+  .nav-links .disabled {
+    display: block;
+    padding: 0.9rem 0;
+    font-size: 1rem;
+  }
+
+  .nav-cta {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+  }
+
+  .nav-links li:last-child a.nav-cta {
+    display: inline-block;
+    width: auto;
+    padding: 10px;
+  }
+}
