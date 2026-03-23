@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const validator = require("validator")
 
-const ContatoSchema = mongoose.Schema({
+const ContactSchema = mongoose.Schema({
     user: { type: 'String', required: true },
     name: { type: 'String', required: true },
     cel: { type: 'String', required: false, default: '' },
@@ -9,15 +9,22 @@ const ContatoSchema = mongoose.Schema({
     criadoEm: { type: Date, default: Date.now },
 })
 
-const  ContatoModel = mongoose.model('contacts', ContatoSchema)
+const  ContactModel = mongoose.model('contacts', ContactSchema)
 
-class Contato {
+class Contact {
     constructor(body, user) {
         this.body = body,
         this.user = user,
         this.errors = [],
-        this.contato = null
+        this.contact = null
     }
+
+    // SEARCH CONTACT IN DB USING "USER"
+    async searchContact() {
+        const data = await ContactModel.find({user: this.user})
+        return data
+    }
+
 
     // CREATE A CONTACT IN DB
     async create() {
@@ -26,7 +33,7 @@ class Contato {
             if(this.errors.length > 0) return
             console.log("teste")
             this.body.user = this.user
-            await ContatoModel.create(this.body).then((data) => console.log(data))
+            await ContactModel.create(this.body)
         } catch(e) {
             console.log(e)
         }
@@ -65,4 +72,4 @@ class Contato {
     }
 }
 
-module.exports = Contato
+module.exports = Contact

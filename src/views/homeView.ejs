@@ -6,28 +6,24 @@
     <h1>Lista de Contatos</h1>
     <div class="table-container">
         <div>
+            <% if(contactData.length === 0) {%>
+                 <h2>Nenhum contato criato</h2>
+            <% } else {  %>
             <table>
                 <tr>
                     <th>Nome</th>
                     <th>Telefone</th>
                     <th>Email</th>
                 </tr>
-                <tr>
-                    <td>João Pedro</td>
-                    <td>(35)9 8701-1580</td>
-                    <td>camposjoaopedro344@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Amor da minha vida</td>
-                    <td>(35)9 8868-7040</td>
-                    <td>g4byx@gmail.com</td>
-                </tr>
-                <tr>
-                    <td>Mãe</td>
-                    <td>(35)9 8897-7511</td>
-                    <td>camposjoaopedro344@gmail.com</td>
-                </tr>
+                <% contactData.forEach(data => { %>
+                   <tr>
+                        <td><%= data.name %></td>
+                        <td><%= data.email %></td>
+                        <td><%= data.cel %></td>
+                    </tr> 
+                <% }) %>
             </table>
+            <% } %>
         </div>
     </div>
 </div>

@@ -33,7 +33,7 @@ class RegisterUser {
             this.body.password = bcrypt.hashSync(this.body.password, salt)
 
     
-            RegisterModel.create(this.body).then(d => console.log(d))
+            RegisterModel.create(this.body)
         } catch(e) {
             console.log(e)
         }

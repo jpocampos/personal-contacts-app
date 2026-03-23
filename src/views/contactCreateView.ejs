@@ -16,7 +16,7 @@
           <h4>Cadastro</h4>
           <p>Preecha o formulário abaixo para criar um novo contato:</p>
 
-          <form class="form-cadastro" action="/contatos/create" method="POST">
+          <form class="form-cadastro" action="/contact/create" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken%>">
             <div class="form-group">
               <label>Nome</label>
@@ -30,7 +30,7 @@
               <label>Telefone</label>
               <input type="text" class="form-control" name="cel">
             </div>
-            <button type="submit" class="btn btn-primary btn-login">Criar minha conta</button>
+            <button type="submit" class="btn btn-primary btn-login">Criar contato</button>
           </form>
 
         </div>
