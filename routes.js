@@ -15,7 +15,7 @@ route.post("/login", registerController.login)
 route.get("/login/logout", registerController.logout)
 
 // Contato
-route.get("/contato", contatoController.homeContato)
-route.post("/contato/create", contatoController.createContato)
+route.get("/contatos", contatoController.homeContato)
+route.post("/contatos/create", contatoController.createContato)
 
 module.exports = route
