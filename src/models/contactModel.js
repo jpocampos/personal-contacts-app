@@ -21,23 +21,19 @@ class Contact {
 
     // DELETE METHOD
     async delete(id) {
-        try{
-            if(typeof id !== "string") return
-            const contact = await ContactModel.findByIdAndDelete(id)
-            return contact
-        } catch(e) {
-            console.log(e)
-            this.errors.push("Um erro inesperado aconteceu, caso persiste contate o suporte!")
-        }
-        
+        if(typeof id !== "string") return
+        const contact = await ContactModel.findByIdAndDelete(id)
+        return contact  
     }
 
+    // SEARCH ON DB USING "_id" AND UPDATE USING THE "this.body"
     async update(id) {
         if(typeof id !== "string") return
         const contact = await ContactModel.findOneAndUpdate({ _id: id}, this.body)
         return contact
     }
 
+    // SEARCH CONTACT IN DB USING "_ID"
     async searchContactById(id) {
         if(typeof id !== "string") return
         const contact = await ContactModel.findOne({ _id: id})
@@ -53,16 +49,13 @@ class Contact {
 
     // CREATE A CONTACT IN DB
     async create() {
-        try {
-            this.valida()
-            if(this.errors.length > 0) return
-            console.log("teste")
-            this.body.user = this.user
-            await ContactModel.create(this.body)
-        } catch(e) {
-            console.log(e)
-        }
+        this.valida()
+        // IF THERE IS A ERROR STOP THE CODE
+        if(this.errors.length > 0) return
 
+        // CREATE A CONTACT
+        this.body.user = this.user
+        await ContactModel.create(this.body)
     }
 
     // CHECK THE PARAMS OF REGISTER

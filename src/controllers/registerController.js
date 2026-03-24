@@ -5,22 +5,27 @@ exports.index = (req,res) => {
 }
 
 exports.register = async (req,res) => {
-    const register = new RegisterUser(req.body)
-    await register.register()
+    try{
+        const register = new RegisterUser(req.body)
+        await register.register()
+        
+        if(register.errors.length > 0) {
+            req.flash("errors", register.errors)
+            req.session.save(() => {
+                return res.redirect("/login")
+            })
+            return  
+        }
     
-    if(register.errors.length > 0) {
-        req.flash("errors", register.errors)
-        req.session.save(() => {
-            return res.redirect("/login")
-        })
+        req.flash("success", "Usuário criado com sucesso!")
+            req.session.save(() => {
+                return res.redirect("/login")
+            })
         return  
+    } catch (e) {
+        console.log(e)
+        res.render("404.ejs")
     }
-
-    req.flash("success", "Usuário criado com sucesso!")
-        req.session.save(() => {
-            return res.redirect("/login")
-        })
-    return  
 }
 
 exports.login = async (req, res) => {
@@ -42,8 +47,9 @@ exports.login = async (req, res) => {
             return res.redirect("/")
         })
         return 
-    } catch(e) {
+    } catch (e) {
         console.log(e)
+        res.render("404.ejs")
     }
 }
 

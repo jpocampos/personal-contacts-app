@@ -33,7 +33,7 @@ exports.loadContactById = async (req, res, next) => {
 
 }
 
-exports.middlewareError = (err, req, res, next) => {
+exports.middlewareErrorCsrf = (err, req, res, next) => {
     if (err) {
         console.log(err)
         return res.render("404.ejs")
@@ -43,4 +43,8 @@ exports.middlewareError = (err, req, res, next) => {
 exports.middlewareCsrf = (req, res, next) => {
     res.locals.csrfToken = req.csrfToken()
     next()
+}
+
+exports.routeNotFoundError = (req, res, next) => {
+    return res.render("404.ejs")
 }

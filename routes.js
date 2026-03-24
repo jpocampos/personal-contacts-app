@@ -21,5 +21,4 @@ route.get("/contact/delete/:id", contactController.deleteContact)
 route.get("/contact/edit/index/:id", loadContactById, contactController.homeEditContact)
 route.post("/contact/edit/update/:id", contactController.updateContact)
 
-
 module.exports = route

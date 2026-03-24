@@ -19,24 +19,20 @@ class RegisterUser {
     }
     // START REGISTER
     async register() {
-        try {
-            this.valida()
-            console.log(this.errors)
-            if(this.errors.length > 0) return
+        this.valida()
+        console.log(this.errors)
+        if(this.errors.length > 0) return
 
-            await this.userExist()
-            
-            if(this.errors.length > 0) return
+        await this.userExist()
+        
+        if(this.errors.length > 0) return
 
-            const salt = bcrypt.genSaltSync(10)
+        const salt = bcrypt.genSaltSync(10)
 
-            this.body.password = bcrypt.hashSync(this.body.password, salt)
+        this.body.password = bcrypt.hashSync(this.body.password, salt)
 
-    
-            RegisterModel.create(this.body)
-        } catch(e) {
-            console.log(e)
-        }
+
+        RegisterModel.create(this.body)
     }
 
     async login() {

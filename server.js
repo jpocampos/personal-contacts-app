@@ -9,7 +9,7 @@ const csrf = require("csurf")
 
 
 // MIDDLEWARE
-const { middlewareGlobal, middlewareCsrf, middlewareError } = require("./src/middleware/middleware.js")
+const { middlewareGlobal, middlewareCsrf, middlewareErrorCsrf, routeNotFoundError } = require("./src/middleware/middleware.js")
 
 // DATABASE
 const mongoose = require('mongoose');
@@ -55,12 +55,13 @@ app.use(csrf())
 
 // MIDDLEWARE
 app.use(middlewareCsrf)
-app.use(middlewareError)
+app.use(middlewareErrorCsrf)
 app.use(middlewareGlobal)
-console.log(middlewareCsrf)
 
 // USE ROUTE
 app.use(route)
+
+app.use(routeNotFoundError)
 
 // RUN SERVER
 app.on("connected", () => {
