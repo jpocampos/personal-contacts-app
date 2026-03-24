@@ -45,6 +45,12 @@ exports.deleteContact = async (req, res) => {
     return  
 }
 
-exports.homeEditContact = async (req, res) => {
+exports.homeEditContact = (req, res) => {
     res.render("contactEditView.ejs")
+}
+
+exports.updateContact = async (req, res) => {
+    const contact = new Contact(req.body, null)
+    await contact.update(req.params.id)
+    res.redirect("/")
 }

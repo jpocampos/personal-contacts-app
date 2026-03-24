@@ -32,6 +32,12 @@ class Contact {
         
     }
 
+    async update(id) {
+        if(typeof id !== "string") return
+        const contact = await ContactModel.findOneAndUpdate({ _id: id}, this.body)
+        return contact
+    }
+
     async searchContactById(id) {
         if(typeof id !== "string") return
         const contact = await ContactModel.findOne({ _id: id})

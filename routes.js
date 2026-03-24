@@ -19,7 +19,7 @@ route.get("/contact", contactController.homeContact)
 route.post("/contact/create", contactController.createContact)
 route.get("/contact/delete/:id", contactController.deleteContact)
 route.get("/contact/edit/index/:id", loadContactById, contactController.homeEditContact)
-route.post("/contact/edit/update/:id", contactController.deleteContact)
+route.post("/contact/edit/update/:id", contactController.updateContact)
 
 
 module.exports = route
