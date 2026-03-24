@@ -14,8 +14,17 @@ exports.loadContactHome = async (req, res, next) => {
         next()
     } catch(e) {
         console.log(e)
+        res.render("404.ejs")
         next()
     }
+}
+
+exports.loadContactById = async (req, res, next) => {
+    const contact = new Contact()
+    const data = await contact.searchContactById(req.params.id)
+    res.locals.contact = data
+
+    next()
 }
 
 exports.middlewareError = (err, req, res, next) => {

@@ -7,7 +7,7 @@
     <div class="table-container">
         <div>
             <% if(contactData.length === 0) {%>
-                 <h2>Nenhum contato criato</h2>
+                 <h2>Nenhum contato criado</h2>
             <% } else {  %>
             <table>
                 <tr>
@@ -18,8 +18,10 @@
                 <% contactData.forEach(data => { %>
                    <tr>
                         <td><%= data.name %></td>
-                        <td><%= data.email %></td>
                         <td><%= data.cel %></td>
+                        <td><%= data.email %></td>
+                        <td class="btn-blue"><a href="/contact/edit/index/<%= data._id %>">Editar</a></td>
+                        <td class="btn-red"><a href="/contact/delete/<%= data._id %>">Excluir</a></td>
                     </tr> 
                 <% }) %>
             </table>

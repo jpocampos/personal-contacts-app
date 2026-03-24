@@ -19,6 +19,25 @@ class Contact {
         this.contact = null
     }
 
+    // DELETE METHOD
+    async delete(id) {
+        try{
+            if(typeof id !== "string") return
+            const contact = await ContactModel.findByIdAndDelete(id)
+            return contact
+        } catch(e) {
+            console.log(e)
+            this.errors.push("Um erro inesperado aconteceu, caso persiste contate o suporte!")
+        }
+        
+    }
+
+    async searchContactById(id) {
+        if(typeof id !== "string") return
+        const contact = await ContactModel.findOne({ _id: id})
+        return contact
+    }
+
     // SEARCH CONTACT IN DB USING "USER"
     async searchContact() {
         const data = await ContactModel.find({user: this.user})
@@ -48,7 +67,7 @@ class Contact {
         // CHECK IF THERE IS A NAME
         if(!this.body.name) this.errors.push("O campo nome deve estar preenchido!")
         // CHECK NAME LENGTH
-        if(this.body.name.length > 20) this.errors.push("O campo nome deve até 20 caracteres!")
+        if(this.body.name.length > 40) this.errors.push("O campo nome deve até 40 caracteres!")
         // CHECK IF THERE ARE A CONTACT WAY
         if(!this.body.email && !this.body.cel) this.errors.push("É preciso colocar um email ou um telefone!")
         // CHECK CEL LENGTH

@@ -12,16 +12,39 @@ exports.createContact = async (req, res) => {
     await contact.create()
     // CHECK ERRORS
     if(contact.errors.length > 0) {
-            req.flash("errors", contact.errors)
-            req.session.save(() => {
-                return res.redirect("/contacts")
-            })
-            return  
-        }
+        req.flash("errors", contact.errors)
+        req.session.save(() => {
+            return res.redirect("/contact")
+        })
+        return  
+    }
     // IF NOT THERE ARE ERROS, CREATE THE CONTACT ON DB
     req.flash("success", "Contato criado com sucesso!")
         req.session.save(() => {
             return res.redirect("/")
         })
     return  
+}
+
+exports.deleteContact = async (req, res) => {
+    const contact = new Contact(null, req.params.id)
+    await contact.delete(req.params.id)
+
+    if(contact.errors.length > 0) {
+        req.flash("errors", contact.errors)
+        req.session.save(() => {
+            return res.redirect("/")
+        })
+        return  
+    }
+    // IF NOT THERE ARE ERROS, CREATE THE CONTACT ON DB
+    req.flash("success", "Contato deletado com sucesso!")
+        req.session.save(() => {
+            return res.redirect("/")
+        })
+    return  
+}
+
+exports.homeEditContact = async (req, res) => {
+    res.render("contactEditView.ejs")
 }

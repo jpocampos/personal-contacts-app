@@ -220,3 +220,10 @@ transform-origin: center;
     padding: 10px;
   }
 }
+
+.btn-red {
+  color: red;
+}
+.btn-blue {
+  color: blue;
+}
