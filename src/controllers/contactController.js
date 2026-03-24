@@ -3,7 +3,6 @@ const Contact = require("../models/contactModel")
 // CONTACT HOME
 exports.homeContact = (req, res) => {
     // CHECK LOGIN
-    if(!req.session.user) return res.render("404.ejs")
     res.render("contactCreateView.ejs")
     
 }
@@ -53,7 +52,6 @@ exports.deleteContact = async (req, res) => {
 // CONTACT HOME VIEW
 exports.homeEditContact = (req, res) => {
     // CHECK LOGIN
-    if(!req.session.user) return res.render("404.ejs")
     res.render("contactEditView.ejs")
 }
 
