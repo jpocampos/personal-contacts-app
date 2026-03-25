@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon server.js --ignore public --ignore frontend",
-    "build": "webpack -w"
+    "dev": "nodemon server.js --ignore public --ignore frontend",
+    "build": "webpack -w",
+    "server": "node server.js"
   },
   "keywords": [],
   "author": "",
