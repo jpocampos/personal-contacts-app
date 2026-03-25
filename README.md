@@ -17,7 +17,7 @@ Aplicação web full-stack para gerenciamento de contatos pessoais, com sistema 
 
 ## 🛠️ Tecnologias e Dependências
 
-### 🔙 Backend
+## 🔙 Backend
 
 * **Node.js** (v18.19.1) — ambiente de execução JavaScript no servidor
 * **Express.js** (v5.2.1) — framework para criação de aplicações web
@@ -30,7 +30,7 @@ Aplicação web full-stack para gerenciamento de contatos pessoais, com sistema 
 * **dotenv** (v17.3.1) — gerenciamento de variáveis de ambiente
 * **validator** (v13.15.26) — validação de dados (email, senha, etc.)
 
-### 🎨 Frontend
+## 🎨 Frontend
 
 * **EJS** (v5.0.1) — template engine para renderização de páginas
 * **css-loader** (v7.1.4) — interpretação de arquivos CSS no JavaScript
@@ -38,13 +38,13 @@ Aplicação web full-stack para gerenciamento de contatos pessoais, com sistema 
 * **core-js** (v3.48.0) — polyfills para compatibilidade com navegadores antigos
 * **regenerator-runtime** (v0.14.1) — suporte a async/await em ambientes antigos
 
-### ⚙️ Ferramentas de Desenvolvimento
+## ⚙️ Ferramentas de Desenvolvimento
 
 * **Nodemon** (v3.1.14) — reinicialização automática do servidor durante o desenvolvimento
 * **Webpack** (v5.105.4) — empacotador de módulos (bundler)
 * **webpack-cli** (v6.0.1) — interface de linha de comando do Webpack
 
-### 🧠 Transpilação com Babel
+## 🧠 Transpilação com Babel
 
 * **@babel/core** (v7.29.0) — núcleo do Babel
 * **@babel/cli** (v7.28.6) — execução via terminal
