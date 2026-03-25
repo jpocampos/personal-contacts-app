@@ -73,7 +73,7 @@ Aplicação web full-stack para gerenciamento de contatos pessoais, com sistema 
 
 ```bash
 git clone <url-do-repositorio>
-cd projeto-agenda
+cd personal-contacts-app
 ```
 
 **2. Instale as dependências**
