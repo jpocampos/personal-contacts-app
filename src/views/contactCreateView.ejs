@@ -8,6 +8,7 @@
     <div class="col-12-8 my-3">
       <h1 class="text-center">Faça o cadastro de um contato</h1>
       
+      <div id="error-container"></div>
       <%- include('./includes/message') %>
       <div class="row">
 
@@ -16,7 +17,7 @@
           <h4>Cadastro</h4>
           <p>Preecha o formulário abaixo para criar um novo contato:</p>
 
-          <form class="form-cadastro" action="/contact/create" method="POST">
+          <form class="form-contact-create" action="/contact/create" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken%>">
             <div class="form-group">
               <label>Nome</label>

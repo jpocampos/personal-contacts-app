@@ -2,7 +2,7 @@ import * as zod from "zod";
 
 export default class Login {
     constructor(formClass) {
-        this.formClass = document.querySelector(formClass),
+        this.formClass = document.querySelector(formClass)
         this.errors = []
     }
 
@@ -14,7 +14,7 @@ export default class Login {
 
     // Freeze the form
     event() {
-        this.this.formClass.addEventListener("submit", (e) => {
+        this.formClass.addEventListener("submit", (e) => {
             e.preventDefault()
             this.valid()
         })
@@ -23,20 +23,25 @@ export default class Login {
     // Start check de params of validation
     valid() {
         // Select Inputs
+        const nameInput = this.formClass.querySelector('input[name="name"]')
         const emailInput = this.formClass.querySelector('input[name="email"]')
-        const passwordInput = this.formClass.querySelector('input[name="password"]')
+        const celInput = this.formClass.querySelector('input[name="cel"]')
+        
+
         // Make a object based on inputs
         const obj = {
+            name: nameInput.value,
             email: emailInput.value,
-            password: passwordInput.value
+            cel: celInput.value
         }
-        // Check email and password using zod
-        this.checkEmailAndPassword(obj)
+
+        console.log(obj)
+        // Check params of create/edit contact
+        this.checkParam(obj)
         // If an error occurs, it will be displayed on screen
         if(this.errors.length > 0) return this.showErrors(this.errors)
         // Subit the form
-        console.log(this.errors)
-        return this.this.formClass.submit()
+        return this.formClass.submit()
     }
 
     // Show error on screen
@@ -74,32 +79,52 @@ export default class Login {
     }
 
     // Check email and password using zod
-    checkEmailAndPassword(obj) {
+    checkParam(obj) {
         // Make a schema
         const User = zod.object({
-            email: zod.email("Email inválido"),
-            password: zod.string("Erro desconhecido")
-            .min(3,"A senha tem que ter entre 3 à 20 caracteres")
-            .max(20, "A senha tem que ter entre 3 à 20 caracteres")
-        })
+            // name
+            name: zod.string()
+            .max(40, "O tamanho máximo é 40 caracteres")
+            .refine((val) => val.trim().length > 0, {
+                message: "É preciso informar um nome"
+            }),
+            // email
+            email: zod.email("Email inválido").or(zod.literal("")),
+            // Cel
+            cel: zod.string()
+            .max(20, "O máximo de digitos para um telefone são 20 dígitos")
+            .refine((val) => val === "" || val.trim().length > 0, {
+                message: "É preciso informar telefone válido",
+            })
+            // Check if has a way to contact
+        }).superRefine((dados, ctx) => {
+            if(dados.email === "" && dados.cel === "") {
+                console.log(dados.email)
+                console.log(dados.email)
+                ctx.addIssue({
+                    code: "contact_error",
+                    message: "É preciso ao menos um meio de contato",
+                    input: ['contact']
+                })
+            }
+        }) 
         
-// const contactEdit = new Login(".form-contact-edit")
         // Check if the "obj" is "safe"
         const result = User.safeParse(obj);
-        // Checks for validation errors and adds formatted messages to this.errors
+        
         if (!result.success) {
-            // Format the error
+            // Object contains the errors
+            this.errors = []
             const objError = zod.flattenError(result.error)
-
             // Clean up the errors
             if(this.errors.length > 0) this.errors = []
-            
-            // Change the error name in your formatted version to show for the client
-            for(let i in objError.fieldErrors){
-                const error = objError.fieldErrors[i]
-                
-                this.errors.push(error)
-            }
+            Object.values(objError).forEach((data) => {
+                if(Array.isArray(data)) {
+                    data.forEach((i) => this.errors.push(i))
+                } else if(typeof data === "object" && data !== null ) {
+                    Object.values(data).forEach(i => this.errors.push(i[0]));
+                }
+            }) 
         } else {
             // Return true
             return result.success

@@ -8,6 +8,7 @@
     <div class="col-12-8 my-3">
       <h1 class="text-center">Edite um contato</h1>
       
+      <div id="error-container"></div>
       <%- include('./includes/message') %>
       <div class="row">
 
@@ -16,19 +17,19 @@
           <h4>Editar contato</h4>
           <p>Preecha o formulário abaixo para editar o contato:</p>
 
-          <form class="form-cadastro" action="/contact/edit/update/<%= contact._id %>" method="POST">
+          <form class="form-contact-edit" action="/contact/edit/update/<%= contact._id %>" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken%>">
             <div class="form-group">
               <label>Nome</label>
-              <input type="text" class="form-control" name="name" value="<% if(contact.length > 0) %> <%= contact.name %>">
+              <input type="text" class="form-control" name="name" value="<% if(contact.length > 0) %><%=contact.name%>">
             </div>
             <div class="form-group">
               <label>Email</label>
-              <input type="email" class="form-control" name="email" value="<% if(contact.length > 0) %> <%= contact.email %>">
+              <input type="email" class="form-control" name="email" value="<% if(contact.length > 0) %><%=contact.email%>">
             </div>
             <div class="form-group">
               <label>Telefone</label>
-              <input type="text" class="form-control" name="cel" value="<% if(contact.length > 0) %> <%= contact.cel %>">
+              <input type="text" class="form-control" name="cel" value="<% if(contact.length > 0) %><%=contact.cel%>">
             </div>
             <button type="submit" class="btn btn-primary btn-login">Atualizar</button>
           </form>
