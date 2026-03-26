@@ -4,11 +4,12 @@
 <div class="container">
   <div class="row">
     <div class="col-12-2"></div>
-
+    
     <div class="col-12-8 my-3">
       <h1 class="text-center">Criar conta ou Entrar</h1>
       <p class="text-center lead">Faça login ou crie sua conta abaixo</p>
       
+      <div id="error-container"></div>
       <%- include('./includes/message') %>
       <div class="row">
 
@@ -17,7 +18,7 @@
           <h4>Faça seu cadastro</h4>
           <p>Se você ainda não tem conta, preencha o formulário abaixo:</p>
 
-          <form class="form-cadastro" action="/register" method="POST">
+          <form class="form-register" action="/register" method="POST">
             <input type="hidden" name="_csrf" value="<%= csrfToken%>">
             <div class="form-group">
               <label>Seu e-mail</label>

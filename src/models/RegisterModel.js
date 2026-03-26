@@ -20,7 +20,6 @@ class RegisterUser {
     // START REGISTER
     async register() {
         this.valida()
-        console.log(this.errors)
         if(this.errors.length > 0) return
 
         await this.userExist()
