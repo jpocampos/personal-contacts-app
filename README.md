@@ -37,6 +37,7 @@ Aplicação web full-stack para gerenciamento de contatos pessoais, com sistema 
 * **style-loader** (v4.0.0) — injeção de estilos CSS no DOM
 * **core-js** (v3.48.0) — polyfills para compatibilidade com navegadores antigos
 * **regenerator-runtime** (v0.14.1) — suporte a async/await em ambientes antigos
+* **"zod** (v4.3.6) - Validação de formulários no front-end
 
 ## ⚙️ Ferramentas de Desenvolvimento
 
@@ -145,6 +146,10 @@ projeto-agenda/
 │       └── bundle.js          # JS compilado pelo Webpack
 ├── frontend/
 │   ├── main.js                # Ponto de entrada do frontend
+│   ├── modules/               # Validação de fomulário no frotend
+│   │   └── Contact.js         # Valida fomulários de  contatos
+│   │   └── Login.js           # Valida formulários de login/register
+
 │   └── assets/css/
 │       └── style.css          # Estilos globais
 └── src/                       # Código principal (MVC)
