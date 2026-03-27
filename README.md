@@ -149,7 +149,6 @@ projeto-agenda/
 │   ├── modules/               # Validação de fomulário no frotend
 │   │   └── Contact.js         # Valida fomulários de  contatos
 │   │   └── Login.js           # Valida formulários de login/register
-
 │   └── assets/css/
 │       └── style.css          # Estilos globais
 └── src/                       # Código principal (MVC)
